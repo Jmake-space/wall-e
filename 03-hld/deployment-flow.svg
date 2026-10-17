@@ -28,7 +28,7 @@
   <text x="125" y="186" font-size="12" fill="#6B7280" text-anchor="middle">push / pull request</text>
 
   <rect x="250" y="140" width="240" height="64" rx="10" fill="#F3F4F6" stroke="#4B5563" stroke-width="2"/>
-  <text x="370" y="167" font-size="14" font-weight="700" fill="#1F2937" text-anchor="middle">CI</text>
+  <text x="370" y="167" font-size="14" font-weight="700" fill="#1F2937" text-anchor="middle">GitHub Actions · CI</text>
   <text x="370" y="186" font-size="12" fill="#6B7280" text-anchor="middle">lint · tests · payment-path · secrets</text>
 
   <rect x="530" y="140" width="230" height="64" rx="10" fill="#F3F4F6" stroke="#4B5563" stroke-width="2"/>
@@ -55,7 +55,7 @@
   <!-- Stage 3: environments -->
   <rect x="840" y="350" width="230" height="64" rx="10" fill="#F3F4F6" stroke="#4B5563" stroke-width="2"/>
   <text x="955" y="377" font-size="14" font-weight="700" fill="#1F2937" text-anchor="middle">Deploy: dev -> staging</text>
-  <text x="955" y="396" font-size="12" fill="#6B7280" text-anchor="middle">automatic on merge</text>
+  <text x="955" y="396" font-size="12" fill="#6B7280" text-anchor="middle">GHA · terraform apply · auto</text>
 
   <polygon points="1110,382 1150,350 1190,382 1150,414" fill="#F3F4F6" stroke="#4B5563" stroke-width="2"/>
   <text x="1150" y="378" font-size="12" font-weight="700" fill="#1F2937" text-anchor="middle">human</text>
@@ -63,7 +63,7 @@
 
   <rect x="840" y="480" width="230" height="64" rx="10" fill="#F3F4F6" stroke="#4B5563" stroke-width="2"/>
   <text x="955" y="507" font-size="14" font-weight="700" fill="#1F2937" text-anchor="middle">Deploy: production</text>
-  <text x="955" y="526" font-size="12" fill="#6B7280" text-anchor="middle">only after approval</text>
+  <text x="955" y="526" font-size="12" fill="#6B7280" text-anchor="middle">GHA · terraform apply · approved only</text>
 
   <!-- Stage 4: targets -->
   <rect x="250" y="600" width="290" height="64" rx="10" fill="#DBEAFE" stroke="#1D4ED8" stroke-width="2"/>
@@ -100,5 +100,5 @@
   </g>
   <text x="892" y="452" font-size="11.5" fill="#B91C1C">rollback</text>
 
-  <text x="40" y="716" font-size="12.5" fill="#6B7280">Every deploy writes an audit entry · payment paths need green CI + human review · production needs explicit approval · hosting platform still TBD (see ADR 0005).</text>
+  <text x="40" y="716" font-size="12.5" fill="#6B7280">Delivery: GitHub Actions + Terraform — see infrastructure.md · every deploy writes an audit entry · payment paths need green CI + human review.</text>
 </svg>

@@ -6,3 +6,4 @@
 - `data-flow.svg` — end-to-end payment flow, numbered step by step.
 - `deployment-flow.svg` — how code ships: PR → CI → staging → approval → prod.
 - `diagrams.md` — color key and how to read the diagrams.
+- `infrastructure.md` — GitHub Actions workflows, Terraform layout, environments.

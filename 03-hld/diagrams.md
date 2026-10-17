@@ -11,8 +11,9 @@ Three views of the same system. Colors are consistent across all of them:
 | Gray | People and pipeline steps | Human, CI, deploy stages |
 
 The microservice / serverless split is a proposal, not a final call — see
-`06-schedule-adr/adr/0005-microservice-serverless-split.md` for the reasoning
-and what's still open (hosting platform, cold-start mitigation).
+`06-schedule-adr/adr/0005-microservice-serverless-split.md` and
+`06-schedule-adr/adr/0006-gha-terraform-delivery.md` for the reasoning and
+what's still open (hosting platform, cold-start mitigation, state backend).
 
 ## The diagrams
 
@@ -24,9 +25,10 @@ and what's still open (hosting platform, cold-start mitigation).
   (staked SOL → unstake → notify → approve → execute). Solid arrows are
   requests/commands, dashed arrows are responses/notifications. The approval
   gate (steps 20–21) is the only path to execution — nothing moves without it.
-- **`deployment-flow.svg`** — how code ships: PR → CI → review → merge →
-  parallel builds (containers + function bundles) → dev/staging auto-deploy →
-  human approval → production. Rollback path included.
+- **`deployment-flow.svg`** — how code ships: PR → GitHub Actions CI → review →
+  merge → parallel builds (containers + function bundles) → dev/staging
+  auto-deploy → human approval → `terraform apply` to production, with
+  rollback path. Spec in `infrastructure.md`; decision in ADR 0006.
 
 ## Conventions
 
