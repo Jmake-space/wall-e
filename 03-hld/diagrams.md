@@ -19,7 +19,11 @@ what's still open (hosting platform, cold-start mitigation, state backend).
 
 - **`architecture.svg`** — the static shape: clients, edge, core services,
   integration workers, external rails, and data stores, with the main
-  call paths. Read this first.
+  call paths. Dashed bands are network zones (public / private / isolated);
+  dark badges are the components' service accounts. Read this first.
+- **`access-model.svg`** — auth flows (human MFA, agent mTLS, GHA OIDC) and
+  the service-account least-privilege matrix, including the explicitly
+  denied paths that enforce separation of duties.
 - **`data-flow.svg`** — the dynamic shape: one payment end to end, numbered
   step by step. Uses the Solana example from the original thread
   (staked SOL → unstake → notify → approve → execute). Solid arrows are

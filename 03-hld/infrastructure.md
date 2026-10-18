@@ -10,6 +10,64 @@ PR → GHA CI → human review → merge to main → GHA build (containers +
 function bundles, in parallel) → registries → GHA deploy
 (`terraform apply`) → dev/staging auto → human approval → production.
 
+See `architecture.svg` (network zones, service accounts) and
+`access-model.svg` (auth flows, least-privilege grants).
+
+## Network
+
+One VPC, three tiers. [DRAFT PLACEHOLDER — cloud provider not chosen;
+names below are the intent, not the product.]
+
+- **Public subnets** — internet ingress only. The API Gateway lives here
+  (behind the cloud load balancer). Security group: 443 in from the
+  internet, nothing else.
+- **Private subnets** — all workloads: the 4 microservices (gateway is
+  public; here: agent core, auth, audit writer) and the 4 function workers
+  (plaid connector, rail adapters, guardrails, notifier). No inbound from
+  the internet. Outbound to third-party APIs (Plaid, Coinbase, Trustly,
+  notification providers) goes via NAT egress.
+- **Isolated subnets** — data only: audit store, transaction store, token
+  vault. No internet route at all, inbound or outbound. Security groups
+  allow only the workload security groups, on the store ports.
+
+Default-deny everywhere; every allow is an explicit security-group rule
+between named tiers.
+
+## Auth
+
+- **Humans** — MFA (TOTP / WebAuthn) at MVP; step-up to 3FA/4FA for
+  high-stakes approvals. Auth + Identity issues short-lived session tokens;
+  the gateway validates every request.
+- **Agent clients** — mTLS + API key, scoped to what the agent may ask for.
+- **Service to service** — every component runs as its own service account
+  (badges on the architecture diagram), mutual TLS with short-lived SA
+  tokens. No shared credentials.
+- **GHA → cloud** — OIDC federation; GitHub Actions assumes a
+  per-environment deploy role. No long-lived cloud keys in repo secrets.
+  The production role is only assumable after the GitHub Environment
+  approval.
+
+## Service accounts & grants
+
+Least privilege, and separation of duties as a design rule:
+
+| SA | Token Vault | Txn Store | Audit Store | External APIs |
+|----|-------------|-----------|-------------|---------------|
+| sa-gateway | — | — | — | — |
+| sa-core | DENY | read | via writer | — |
+| sa-auth | — | — | — | — |
+| sa-plaid | read/write, scoped | write | — | Plaid API |
+| sa-rails | DENY | DENY | — | rail APIs |
+| sa-guardrails | — | read | — | — |
+| sa-notify | — | — | — | notify providers |
+| sa-audit | — | — | append only | — |
+
+The component that reads money (sa-plaid) cannot move it; the component
+that moves it (sa-rails) cannot read it; the component that decides
+(sa-core) can touch neither directly — it works through workers, and every
+step is audited. Only sa-plaid can read the Token Vault, and only the
+tokens it needs.
+
 ## GitHub Actions — `.github/workflows/`
 
 **`ci.yml`** — runs on every PR. Required checks before merge:

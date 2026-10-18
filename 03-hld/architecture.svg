@@ -7,127 +7,139 @@
 
   <rect x="0" y="0" width="1280" height="780" fill="#FFFFFF"/>
 
-  <text x="40" y="46" font-size="22" font-weight="700" fill="#111827">Wall-E — System Architecture (MVP)</text>
-  <text x="40" y="70" font-size="13" fill="#6B7280">Color = deploy shape. Rationale in 06-schedule-adr/adr/0005 and 0006.</text>
+  <text x="40" y="40" font-size="22" font-weight="700" fill="#111827">Wall-E — System Architecture (MVP)</text>
+  <text x="40" y="62" font-size="13" fill="#6B7280">Color = deploy shape · dark badge = service account · dashed band = network zone. Full spec in infrastructure.md.</text>
 
   <!-- Legend -->
-  <rect x="1010" y="18" width="230" height="132" rx="10" fill="#FFFFFF" stroke="#D1D5DB" stroke-width="1.5"/>
-  <text x="1028" y="42" font-size="13" font-weight="700" fill="#111827">Legend</text>
-  <rect x="1028" y="54" width="18" height="14" rx="3" fill="#DBEAFE" stroke="#1D4ED8" stroke-width="1.5"/>
-  <text x="1054" y="66" font-size="12.5" fill="#1F2937">Microservice (container)</text>
-  <rect x="1028" y="78" width="18" height="14" rx="3" fill="#FEF3C7" stroke="#B45309" stroke-width="1.5"/>
-  <text x="1054" y="90" font-size="12.5" fill="#1F2937">Serverless worker</text>
-  <rect x="1028" y="102" width="18" height="14" rx="3" fill="#EDE9FE" stroke="#6D28D9" stroke-width="1.5"/>
-  <text x="1054" y="114" font-size="12.5" fill="#1F2937">External integration</text>
-  <rect x="1028" y="126" width="18" height="14" rx="3" fill="#D1FAE5" stroke="#047857" stroke-width="1.5"/>
-  <text x="1054" y="138" font-size="12.5" fill="#1F2937">Data store</text>
+  <rect x="1010" y="12" width="230" height="156" rx="10" fill="#FFFFFF" stroke="#D1D5DB" stroke-width="1.5"/>
+  <text x="1028" y="34" font-size="13" font-weight="700" fill="#111827">Legend</text>
+  <rect x="1028" y="44" width="18" height="14" rx="3" fill="#DBEAFE" stroke="#1D4ED8" stroke-width="1.5"/>
+  <text x="1054" y="56" font-size="12.5" fill="#1F2937">Microservice (container)</text>
+  <rect x="1028" y="66" width="18" height="14" rx="3" fill="#FEF3C7" stroke="#B45309" stroke-width="1.5"/>
+  <text x="1054" y="78" font-size="12.5" fill="#1F2937">Serverless worker</text>
+  <rect x="1028" y="88" width="18" height="14" rx="3" fill="#EDE9FE" stroke="#6D28D9" stroke-width="1.5"/>
+  <text x="1054" y="100" font-size="12.5" fill="#1F2937">External integration</text>
+  <rect x="1028" y="110" width="18" height="14" rx="3" fill="#D1FAE5" stroke="#047857" stroke-width="1.5"/>
+  <text x="1054" y="122" font-size="12.5" fill="#1F2937">Data store</text>
+  <rect x="1028" y="132" width="52" height="18" rx="9" fill="#111827"/>
+  <text x="1054" y="145" font-size="10" fill="#FFFFFF" text-anchor="middle">sa-core</text>
+  <text x="1088" y="146" font-size="12.5" fill="#1F2937">Service account</text>
+
+  <!-- Network zones (background) -->
+  <rect x="30" y="206" width="640" height="104" rx="12" fill="#F1F5F9" stroke="#94A3B8" stroke-width="1.5" stroke-dasharray="8 5"/>
+  <text x="500" y="228" font-size="11" font-weight="700" fill="#64748B" letter-spacing="1">PUBLIC SUBNET · internet ingress only</text>
+  <rect x="30" y="318" width="940" height="196" rx="12" fill="#F8FAFC" stroke="#94A3B8" stroke-width="1.5" stroke-dasharray="8 5"/>
+  <text x="640" y="508" font-size="11" font-weight="700" fill="#64748B" letter-spacing="1">PRIVATE · workloads · no internet inbound</text>
+  <rect x="1000" y="318" width="250" height="324" rx="12" fill="#F1F5F9" stroke="#94A3B8" stroke-width="1.5" stroke-dasharray="8 5"/>
+  <text x="1014" y="312" font-size="11" font-weight="700" fill="#64748B" letter-spacing="1">ISOLATED · data · no internet</text>
+
+  <text x="40" y="112" font-size="11.5" font-weight="700" fill="#9CA3AF" letter-spacing="1.5">CLIENTS · outside VPC</text>
+  <text x="40" y="556" font-size="11.5" font-weight="700" fill="#9CA3AF" letter-spacing="1.5">EXTERNAL · outside VPC · reached via NAT egress</text>
 
   <!-- CLIENTS -->
-  <text x="40" y="118" font-size="11.5" font-weight="700" fill="#9CA3AF" letter-spacing="1.5">CLIENTS</text>
-  <rect x="40" y="128" width="250" height="64" rx="10" fill="#F3F4F6" stroke="#4B5563" stroke-width="2"/>
-  <text x="165" y="155" font-size="14" font-weight="700" fill="#1F2937" text-anchor="middle">Human</text>
-  <text x="165" y="174" font-size="12" fill="#6B7280" text-anchor="middle">chat / app</text>
-  <rect x="320" y="128" width="300" height="64" rx="10" fill="#F3F4F6" stroke="#4B5563" stroke-width="2"/>
-  <text x="470" y="155" font-size="14" font-weight="700" fill="#1F2937" text-anchor="middle">Agent client</text>
-  <text x="470" y="174" font-size="12" fill="#6B7280" text-anchor="middle">“1800 number” API consumer</text>
+  <rect x="40" y="122" width="250" height="64" rx="10" fill="#F3F4F6" stroke="#4B5563" stroke-width="2"/>
+  <text x="165" y="149" font-size="14" font-weight="700" fill="#1F2937" text-anchor="middle">Human</text>
+  <text x="165" y="168" font-size="12" fill="#6B7280" text-anchor="middle">chat / app · MFA</text>
+  <rect x="320" y="122" width="300" height="64" rx="10" fill="#F3F4F6" stroke="#4B5563" stroke-width="2"/>
+  <text x="470" y="149" font-size="14" font-weight="700" fill="#1F2937" text-anchor="middle">Agent client</text>
+  <text x="470" y="168" font-size="12" fill="#6B7280" text-anchor="middle">mTLS + API key</text>
 
-  <!-- EDGE -->
-  <text x="40" y="216" font-size="11.5" font-weight="700" fill="#9CA3AF" letter-spacing="1.5">EDGE</text>
-  <rect x="140" y="226" width="340" height="60" rx="10" fill="#DBEAFE" stroke="#1D4ED8" stroke-width="2"/>
-  <text x="310" y="250" font-size="14" font-weight="700" fill="#1E3A8A" text-anchor="middle">API Gateway</text>
-  <text x="310" y="269" font-size="12" fill="#3B82F6" text-anchor="middle">routes · rate limits · request IDs</text>
+  <!-- EDGE (public) -->
+  <rect x="140" y="240" width="340" height="60" rx="10" fill="#DBEAFE" stroke="#1D4ED8" stroke-width="2"/>
+  <rect x="152" y="230" width="88" height="20" rx="10" fill="#111827"/>
+  <text x="196" y="244" font-size="10" fill="#FFFFFF" text-anchor="middle">sa-gateway</text>
+  <text x="310" y="266" font-size="14" font-weight="700" fill="#1E3A8A" text-anchor="middle">API Gateway</text>
+  <text x="310" y="284" font-size="12" fill="#3B82F6" text-anchor="middle">routes · rate limits · request IDs</text>
 
-  <!-- CORE -->
-  <text x="40" y="310" font-size="11.5" font-weight="700" fill="#9CA3AF" letter-spacing="1.5">CORE SERVICES</text>
-  <rect x="40" y="320" width="330" height="68" rx="10" fill="#DBEAFE" stroke="#1D4ED8" stroke-width="2"/>
-  <text x="205" y="347" font-size="14" font-weight="700" fill="#1E3A8A" text-anchor="middle">Agent Core</text>
-  <text x="205" y="366" font-size="12" fill="#3B82F6" text-anchor="middle">orchestrator — proposes, waits, executes</text>
-  <rect x="400" y="320" width="250" height="68" rx="10" fill="#DBEAFE" stroke="#1D4ED8" stroke-width="2"/>
-  <text x="525" y="347" font-size="14" font-weight="700" fill="#1E3A8A" text-anchor="middle">Auth + Identity</text>
-  <text x="525" y="366" font-size="12" fill="#3B82F6" text-anchor="middle">MFA at MVP -) 3FA / 4FA</text>
-  <rect x="680" y="320" width="250" height="68" rx="10" fill="#FEF3C7" stroke="#B45309" stroke-width="2"/>
-  <text x="805" y="347" font-size="14" font-weight="700" fill="#92400E" text-anchor="middle">Guardrails</text>
-  <text x="805" y="366" font-size="12" fill="#B45309" text-anchor="middle">policy + fraud checks per request</text>
+  <!-- CORE (private) -->
+  <rect x="40" y="352" width="330" height="68" rx="10" fill="#DBEAFE" stroke="#1D4ED8" stroke-width="2"/>
+  <rect x="52" y="342" width="88" height="20" rx="10" fill="#111827"/>
+  <text x="96" y="356" font-size="10" fill="#FFFFFF" text-anchor="middle">sa-core</text>
+  <text x="205" y="379" font-size="14" font-weight="700" fill="#1E3A8A" text-anchor="middle">Agent Core</text>
+  <text x="205" y="397" font-size="12" fill="#3B82F6" text-anchor="middle">orchestrator — proposes, waits, executes</text>
+  <rect x="400" y="352" width="250" height="68" rx="10" fill="#DBEAFE" stroke="#1D4ED8" stroke-width="2"/>
+  <rect x="412" y="342" width="88" height="20" rx="10" fill="#111827"/>
+  <text x="456" y="356" font-size="10" fill="#FFFFFF" text-anchor="middle">sa-auth</text>
+  <text x="525" y="379" font-size="14" font-weight="700" fill="#1E3A8A" text-anchor="middle">Auth + Identity</text>
+  <text x="525" y="397" font-size="12" fill="#3B82F6" text-anchor="middle">MFA at MVP -) 3FA / 4FA</text>
+  <rect x="680" y="352" width="250" height="68" rx="10" fill="#FEF3C7" stroke="#B45309" stroke-width="2"/>
+  <rect x="692" y="342" width="96" height="20" rx="10" fill="#111827"/>
+  <text x="740" y="356" font-size="10" fill="#FFFFFF" text-anchor="middle">sa-guardrails</text>
+  <text x="805" y="379" font-size="14" font-weight="700" fill="#92400E" text-anchor="middle">Guardrails</text>
+  <text x="805" y="397" font-size="12" fill="#B45309" text-anchor="middle">policy + fraud checks per request</text>
 
-  <!-- INTEGRATION -->
-  <text x="40" y="412" font-size="11.5" font-weight="700" fill="#9CA3AF" letter-spacing="1.5">INTEGRATION WORKERS</text>
-  <rect x="40" y="422" width="190" height="68" rx="10" fill="#FEF3C7" stroke="#B45309" stroke-width="2"/>
-  <text x="135" y="449" font-size="14" font-weight="700" fill="#92400E" text-anchor="middle">Notifier</text>
-  <text x="135" y="468" font-size="12" fill="#B45309" text-anchor="middle">approvals · confirmations</text>
-  <rect x="260" y="422" width="240" height="68" rx="10" fill="#FEF3C7" stroke="#B45309" stroke-width="2"/>
-  <text x="380" y="449" font-size="14" font-weight="700" fill="#92400E" text-anchor="middle">Plaid Connector</text>
-  <text x="380" y="468" font-size="12" fill="#B45309" text-anchor="middle">bank data in / out</text>
-  <rect x="530" y="422" width="400" height="68" rx="10" fill="#FEF3C7" stroke="#B45309" stroke-width="2"/>
-  <text x="730" y="449" font-size="14" font-weight="700" fill="#92400E" text-anchor="middle">Rail Adapters</text>
-  <text x="730" y="468" font-size="12" fill="#B45309" text-anchor="middle">Zelle · Coinbase · Trustly · UPI-BHIM (TBD)</text>
+  <!-- WORKERS (private) -->
+  <rect x="40" y="436" width="160" height="68" rx="10" fill="#FEF3C7" stroke="#B45309" stroke-width="2"/>
+  <rect x="52" y="426" width="88" height="20" rx="10" fill="#111827"/>
+  <text x="96" y="440" font-size="10" fill="#FFFFFF" text-anchor="middle">sa-notify</text>
+  <text x="120" y="463" font-size="14" font-weight="700" fill="#92400E" text-anchor="middle">Notifier</text>
+  <text x="120" y="481" font-size="12" fill="#B45309" text-anchor="middle">approvals · confirmations</text>
+  <rect x="230" y="436" width="270" height="68" rx="10" fill="#FEF3C7" stroke="#B45309" stroke-width="2"/>
+  <rect x="242" y="426" width="88" height="20" rx="10" fill="#111827"/>
+  <text x="286" y="440" font-size="10" fill="#FFFFFF" text-anchor="middle">sa-plaid</text>
+  <text x="365" y="463" font-size="14" font-weight="700" fill="#92400E" text-anchor="middle">Plaid Connector</text>
+  <text x="365" y="481" font-size="12" fill="#B45309" text-anchor="middle">bank data in / out</text>
+  <rect x="530" y="436" width="400" height="68" rx="10" fill="#FEF3C7" stroke="#B45309" stroke-width="2"/>
+  <rect x="542" y="426" width="88" height="20" rx="10" fill="#111827"/>
+  <text x="586" y="440" font-size="10" fill="#FFFFFF" text-anchor="middle">sa-rails</text>
+  <text x="730" y="463" font-size="14" font-weight="700" fill="#92400E" text-anchor="middle">Rail Adapters</text>
+  <text x="730" y="481" font-size="12" fill="#B45309" text-anchor="middle">Zelle · Coinbase · Trustly · UPI-BHIM (TBD)</text>
 
   <!-- EXTERNAL -->
-  <text x="40" y="514" font-size="11.5" font-weight="700" fill="#9CA3AF" letter-spacing="1.5">EXTERNAL RAILS</text>
-  <rect x="40" y="524" width="170" height="60" rx="10" fill="#EDE9FE" stroke="#6D28D9" stroke-width="2"/>
-  <text x="125" y="551" font-size="14" font-weight="700" fill="#4C1D95" text-anchor="middle">Plaid API</text>
-  <text x="125" y="569" font-size="12" fill="#7C3AED" text-anchor="middle">tokens, never logins</text>
-  <rect x="500" y="524" width="170" height="60" rx="10" fill="#EDE9FE" stroke="#6D28D9" stroke-width="2"/>
-  <text x="585" y="551" font-size="14" font-weight="700" fill="#4C1D95" text-anchor="middle">Bank rails</text>
-  <text x="585" y="569" font-size="12" fill="#7C3AED" text-anchor="middle">Zelle-style transfers</text>
-  <rect x="700" y="524" width="160" height="60" rx="10" fill="#EDE9FE" stroke="#6D28D9" stroke-width="2"/>
-  <text x="780" y="551" font-size="14" font-weight="700" fill="#4C1D95" text-anchor="middle">Coinbase</text>
-  <text x="780" y="569" font-size="12" fill="#7C3AED" text-anchor="middle">SOL · USDC · staking</text>
-  <rect x="890" y="524" width="150" height="60" rx="10" fill="#EDE9FE" stroke="#6D28D9" stroke-width="2"/>
-  <text x="965" y="551" font-size="14" font-weight="700" fill="#4C1D95" text-anchor="middle">Trustly</text>
-  <text x="965" y="569" font-size="12" fill="#7C3AED" text-anchor="middle">bank payments</text>
+  <rect x="40" y="566" width="160" height="60" rx="10" fill="#EDE9FE" stroke="#6D28D9" stroke-width="2"/>
+  <text x="120" y="593" font-size="14" font-weight="700" fill="#4C1D95" text-anchor="middle">Plaid API</text>
+  <text x="120" y="611" font-size="12" fill="#7C3AED" text-anchor="middle">tokens, never logins</text>
+  <rect x="230" y="566" width="170" height="60" rx="10" fill="#EDE9FE" stroke="#6D28D9" stroke-width="2"/>
+  <text x="315" y="593" font-size="14" font-weight="700" fill="#4C1D95" text-anchor="middle">Bank rails</text>
+  <text x="315" y="611" font-size="12" fill="#7C3AED" text-anchor="middle">Zelle-style transfers</text>
+  <rect x="430" y="566" width="150" height="60" rx="10" fill="#EDE9FE" stroke="#6D28D9" stroke-width="2"/>
+  <text x="505" y="593" font-size="14" font-weight="700" fill="#4C1D95" text-anchor="middle">Coinbase</text>
+  <text x="505" y="611" font-size="12" fill="#7C3AED" text-anchor="middle">SOL · USDC · staking</text>
+  <rect x="610" y="566" width="150" height="60" rx="10" fill="#EDE9FE" stroke="#6D28D9" stroke-width="2"/>
+  <text x="685" y="593" font-size="14" font-weight="700" fill="#4C1D95" text-anchor="middle">Trustly</text>
+  <text x="685" y="611" font-size="12" fill="#7C3AED" text-anchor="middle">bank payments</text>
 
-  <!-- DATA -->
-  <text x="1010" y="310" font-size="11.5" font-weight="700" fill="#9CA3AF" letter-spacing="1.5">DATA</text>
-  <rect x="1010" y="320" width="230" height="60" rx="10" fill="#DBEAFE" stroke="#1D4ED8" stroke-width="2"/>
-  <text x="1125" y="345" font-size="14" font-weight="700" fill="#1E3A8A" text-anchor="middle">Audit Writer</text>
-  <text x="1125" y="363" font-size="12" fill="#3B82F6" text-anchor="middle">append-only</text>
-  <rect x="1010" y="396" width="230" height="60" rx="10" fill="#D1FAE5" stroke="#047857" stroke-width="2"/>
-  <text x="1125" y="421" font-size="14" font-weight="700" fill="#065F46" text-anchor="middle">Audit Store</text>
-  <text x="1125" y="439" font-size="12" fill="#059669" text-anchor="middle">tamper-evident</text>
-  <rect x="1010" y="472" width="230" height="60" rx="10" fill="#D1FAE5" stroke="#047857" stroke-width="2"/>
-  <text x="1125" y="497" font-size="14" font-weight="700" fill="#065F46" text-anchor="middle">Transaction Store</text>
-  <text x="1125" y="515" font-size="12" fill="#059669" text-anchor="middle">12 months history</text>
-  <rect x="1010" y="548" width="230" height="60" rx="10" fill="#D1FAE5" stroke="#047857" stroke-width="2"/>
-  <text x="1125" y="573" font-size="14" font-weight="700" fill="#065F46" text-anchor="middle">Token Vault</text>
-  <text x="1125" y="591" font-size="12" fill="#059669" text-anchor="middle">Plaid tokens only</text>
+  <!-- DATA (isolated) -->
+  <rect x="1010" y="352" width="230" height="60" rx="10" fill="#DBEAFE" stroke="#1D4ED8" stroke-width="2"/>
+  <rect x="1022" y="342" width="88" height="20" rx="10" fill="#111827"/>
+  <text x="1066" y="356" font-size="10" fill="#FFFFFF" text-anchor="middle">sa-audit</text>
+  <text x="1125" y="377" font-size="14" font-weight="700" fill="#1E3A8A" text-anchor="middle">Audit Writer</text>
+  <text x="1125" y="395" font-size="12" fill="#3B82F6" text-anchor="middle">append-only</text>
+  <rect x="1010" y="428" width="230" height="60" rx="10" fill="#D1FAE5" stroke="#047857" stroke-width="2"/>
+  <text x="1125" y="453" font-size="14" font-weight="700" fill="#065F46" text-anchor="middle">Audit Store</text>
+  <text x="1125" y="471" font-size="12" fill="#059669" text-anchor="middle">tamper-evident</text>
+  <rect x="1010" y="504" width="230" height="60" rx="10" fill="#D1FAE5" stroke="#047857" stroke-width="2"/>
+  <text x="1125" y="529" font-size="14" font-weight="700" fill="#065F46" text-anchor="middle">Transaction Store</text>
+  <text x="1125" y="547" font-size="12" fill="#059669" text-anchor="middle">12 months history</text>
+  <rect x="1010" y="580" width="230" height="60" rx="10" fill="#D1FAE5" stroke="#047857" stroke-width="2"/>
+  <text x="1125" y="605" font-size="14" font-weight="700" fill="#065F46" text-anchor="middle">Token Vault</text>
+  <text x="1125" y="623" font-size="12" fill="#059669" text-anchor="middle">Plaid tokens only · sa-plaid only</text>
 
-  <!-- Arrows: routed through gaps, never across boxes or labels -->
+  <!-- Arrows -->
   <g stroke="#374151" stroke-width="1.8" fill="none">
-    <!-- clients -> gateway -->
-    <line x1="165" y1="192" x2="165" y2="224" marker-end="url(#arr)"/>
-    <line x1="470" y1="192" x2="470" y2="224" marker-end="url(#arr)"/>
-    <!-- gateway -> agent core -->
-    <polyline points="310,286 310,304 205,304 205,318" marker-end="url(#arr)"/>
-    <!-- agent core <-> auth -->
-    <line x1="370" y1="348" x2="398" y2="348" marker-end="url(#arr)"/>
-    <line x1="400" y1="362" x2="372" y2="362" marker-end="url(#arr)"/>
-    <!-- agent core -> guardrails -->
-    <line x1="650" y1="348" x2="678" y2="348" marker-end="url(#arr)"/>
-    <line x1="680" y1="362" x2="652" y2="362" marker-end="url(#arr)"/>
-    <!-- agent core -> notifier / plaid / rails (shared distribution bus at y=405) -->
-    <polyline points="205,388 205,405 135,405 135,420" marker-end="url(#arr)"/>
-    <polyline points="240,388 240,405 380,405 380,420" marker-end="url(#arr)"/>
-    <polyline points="300,388 300,405 730,405 730,420" marker-end="url(#arr)"/>
-    <!-- notifier -> human (left margin, clear of everything) -->
-    <polyline points="40,456 24,456 24,160 38,160" marker-end="url(#arr)"/>
-    <!-- plaid connector -> plaid api -->
-    <polyline points="340,490 340,507 125,507 125,522" marker-end="url(#arr)"/>
-    <!-- rail adapters -> external rails -->
-    <line x1="585" y1="490" x2="585" y2="522" marker-end="url(#arr)"/>
-    <line x1="780" y1="490" x2="780" y2="522" marker-end="url(#arr)"/>
-    <line x1="965" y1="490" x2="965" y2="522" marker-end="url(#arr)"/>
-    <!-- plaid connector -> token vault (bottom bus, clear of boxes) -->
-    <polyline points="420,490 420,640 1125,640 1125,610" marker-end="url(#arr)"/>
-    <!-- audit writer -> audit store -->
-    <line x1="1125" y1="380" x2="1125" y2="394" marker-end="url(#arr)"/>
-    <!-- agent core -> transaction store / audit store (twin bus in the x=242/252 gap) -->
-    <polyline points="242,388 242,700 1125,700 1125,534" marker-end="url(#arr)"/>
-    <polyline points="252,388 252,730 1125,730 1125,458" marker-end="url(#arr)"/>
+    <line x1="165" y1="186" x2="165" y2="238" marker-end="url(#arr)"/>
+    <line x1="470" y1="186" x2="470" y2="238" marker-end="url(#arr)"/>
+    <polyline points="310,300 310,336 205,336 205,350" marker-end="url(#arr)"/>
+    <line x1="370" y1="380" x2="398" y2="380" marker-end="url(#arr)"/>
+    <line x1="400" y1="394" x2="372" y2="394" marker-end="url(#arr)"/>
+    <line x1="650" y1="380" x2="678" y2="380" marker-end="url(#arr)"/>
+    <line x1="680" y1="394" x2="652" y2="394" marker-end="url(#arr)"/>
+    <polyline points="205,420 205,428 120,428 120,434" marker-end="url(#arr)"/>
+    <polyline points="240,420 240,428 365,428 365,434" marker-end="url(#arr)"/>
+    <polyline points="300,420 300,428 730,428 730,434" marker-end="url(#arr)"/>
+    <polyline points="40,470 24,470 24,154 38,154" marker-end="url(#arr)"/>
+    <polyline points="330,504 330,549 120,549 120,564" marker-end="url(#arr)"/>
+    <line x1="315" y1="504" x2="315" y2="564" marker-end="url(#arr)"/>
+    <line x1="505" y1="504" x2="505" y2="564" marker-end="url(#arr)"/>
+    <line x1="685" y1="504" x2="685" y2="564" marker-end="url(#arr)"/>
+    <polyline points="420,504 420,652 1125,652 1125,642" marker-end="url(#arr)"/>
+    <line x1="1125" y1="412" x2="1125" y2="426" marker-end="url(#arr)"/>
+    <polyline points="212,420 212,700 1125,700 1125,566" marker-end="url(#arr)"/>
+    <polyline points="224,420 224,730 1125,730 1125,490" marker-end="url(#arr)"/>
   </g>
 
-  <!-- Arrow labels: all in clear whitespace -->
-  <text x="22" y="308" font-size="11" fill="#4B5563" text-anchor="middle" transform="rotate(-90 22 308)">notifications</text>
-  <text x="682" y="512" font-size="11" fill="#4B5563" text-anchor="middle">executes via</text>
-  <text x="772" y="630" font-size="11" fill="#4B5563" text-anchor="middle">token read / write</text>
+  <text x="22" y="312" font-size="11" fill="#4B5563" text-anchor="middle" transform="rotate(-90 22 312)">notifications</text>
+  <text x="410" y="540" font-size="11" fill="#4B5563" text-anchor="middle">executes via</text>
+  <text x="772" y="642" font-size="11" fill="#4B5563" text-anchor="middle">token read / write · sa-plaid only</text>
   <text x="1160" y="700" font-size="11" fill="#4B5563">audit events</text>
 </svg>
